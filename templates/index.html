@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}CivicTrack AI{% endblock %}{% block content %}
+<section class="hero rounded-4 p-5 mb-4">
+  <h1 class="display-5 fw-bold">Government Complaint Tracking</h1>
+  <p class="lead">Report local issues, follow progress and help public authorities resolve grievances transparently.</p>
+  {% if g.user %}<a class="btn btn-light btn-lg" href="{{ url_for('dashboard') }}">Open dashboard</a>{% else %}<a class="btn btn-light btn-lg me-2" href="{{ url_for('register') }}">Create account</a><a class="btn btn-outline-light btn-lg" href="{{ url_for('login') }}">Login</a>{% endif %}
+</section>
+<div class="row g-3"><div class="col-md-6"><div class="stat-card"><div class="text-secondary">Complaints registered</div><div class="display-6 fw-bold">{{ stats.total or 0 }}</div></div></div><div class="col-md-6"><div class="stat-card"><div class="text-secondary">Open complaints</div><div class="display-6 fw-bold">{{ stats.open_count or 0 }}</div></div></div></div>
+<div class="mt-4"><h3>How it works</h3><p>Citizens submit a complaint with its area and optional photo. AI suggests a category and finds similar reports in the same area. Administrators review possible matches, assign officials and monitor resolution.</p><p class="small text-secondary">AI similarity is only a suggestion. A complaint is never automatically rejected.</p></div>
+{% endblock %}

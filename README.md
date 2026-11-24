@@ -8,7 +8,7 @@ A Flask-based web application for citizens to submit and track public-service co
 - Unique tracking IDs and status history
 - TF-IDF/cosine-similarity suggestions restricted to complaints in the same area
 - Admin review to confirm or reject duplicate suggestions (never automatic rejection)
-- Official assignment, investigation notes, status updates and resolution-photo submission
+- Official assignment, investigation notes and status updates
 - Admin dashboard, overdue/unresolved summaries, area/category summaries and CSV/PDF exports
 - Password hashing, role checks, upload validation and audit events
 

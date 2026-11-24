@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}New complaint{% endblock %}{% block content %}<div class="form-card mx-auto wide"><h2>Submit a complaint</h2><form method="post" enctype="multipart/form-data">
+<label class="form-label">Complaint title</label><input class="form-control mb-3" name="title" maxlength="120" required>
+<label class="form-label">Description</label><textarea class="form-control mb-3" name="description" rows="4" required></textarea>
+<label class="form-label">Category (optional — AI can suggest one)</label><select class="form-select mb-3" name="category"><option value="">AI suggestion</option>{% for c in categories %}<option>{{ c }}</option>{% endfor %}</select>
+<label class="form-label">Area / locality</label><input class="form-control mb-3" name="area" required>
+<label class="form-label">Full address / landmark</label><input class="form-control mb-3" name="address" required>
+<div class="row"><div class="col"><label class="form-label">Latitude (optional)</label><input class="form-control mb-3" name="latitude" type="number" step="any"></div><div class="col"><label class="form-label">Longitude (optional)</label><input class="form-control mb-3" name="longitude" type="number" step="any"></div></div>
+<label class="form-label">Photo (PNG/JPG/WEBP, max 5 MB)</label><input class="form-control mb-3" type="file" name="image" accept="image/png,image/jpeg,image/webp">
+<button class="btn btn-primary">Submit complaint</button></form></div>{% endblock %}

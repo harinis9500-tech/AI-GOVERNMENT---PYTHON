@@ -319,9 +319,10 @@ def complaint_detail(complaint_id):
     if g.user["role"] == "official" and complaint["assigned_to"] != g.user["id"]:
         abort(403)
     history = db().execute("SELECT h.*,u.name actor FROM status_history h LEFT JOIN users u ON u.id=h.actor_id WHERE complaint_id=? ORDER BY h.created_at DESC", (complaint_id,)).fetchall()
+    officials = db().execute("SELECT id,name FROM users WHERE role='official' ORDER BY name").fetchall() if g.user["role"] == "admin" else []
     matches = db().execute("""SELECT d.*,c.tracking_id,c.title FROM duplicate_reviews d
         JOIN complaints c ON c.id=d.matched_complaint_id WHERE d.complaint_id=? ORDER BY d.similarity DESC""", (complaint_id,)).fetchall() if g.user["role"] == "admin" else []
-    return render_template("complaint_detail.html", complaint=complaint, history=history, matches=matches, statuses=STATUSES)
+    return render_template("complaint_detail.html", complaint=complaint, history=history, matches=matches, statuses=STATUSES, officials=officials)
 
 
 @app.route("/admin")
